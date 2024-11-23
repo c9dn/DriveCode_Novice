@@ -79,6 +79,8 @@ void autonomous() {}
 void opcontrol() {
 
 	okapi::Controller controller;
+	okapi::Rate rate;
+	
 	while(true){
 		double leftJoystick = controller.getAnalog(okapi::ControllerAnalog::leftY);
 		double rightJoystick = controller.getAnalog(okapi::ControllerAnalog::rightY);

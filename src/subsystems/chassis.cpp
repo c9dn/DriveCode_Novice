@@ -1,18 +1,20 @@
-#include "subsystems/chassis.hpp";
+#include "subsystems/chassis.hpp"
 
-Motor leftFront(leftFront, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees);
-Motor leftBack(leftBack, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees);
-Motor rightFront(rightFront, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees);
-Motor rightBack(rightBack, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees);
+const int8_t leftFrontPort = 0;
+const int8_t leftBackPort = 0;
+const int8_t rightFrontPort = -0;
+const int8_t rightBackPort = -0;
 
-MotorGroup leftMotors({leftFront, leftBack});
-MotorGroup rightMotors({rightFront, rightBack});
 
-std::shared_ptr<ChassisController> chassis = ChassisControllerBuilder()
-    .withMotors(leftMotors, rightMotors)
-    .withDimensions(AbstractMotor::gearset::blue, {{3.25_in, 9_in}, imev5GreenTPR*(3/5)})
-    .withOdometry()
-    .buildOdometry();
+
+
+Motor leftFrontMotor(leftFrontPort, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees);
+Motor leftBackMotor(leftBackPort, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees);
+Motor rightFrontMotor(rightFrontPort, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees);
+Motor rightBackMotor(rightBackPort, false, AbstractMotor::gearset::blue, AbstractMotor::encoderUnits::degrees);
+
+MotorGroup leftMotors({leftFrontMotor, leftBackMotor});
+MotorGroup rightMotors({rightFrontMotor, rightBackMotor});
 
 
 std::shared_ptr<okapi::ChassisController> chassis = okapi::ChassisControllerBuilder()

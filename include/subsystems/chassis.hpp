@@ -3,13 +3,16 @@
 using namespace okapi;
 using namespace okapi::literals;
 
-const int8_t leftFront = 0;
-const int8_t leftBack = 0;
-const int8_t rightFront = 0;
-const int8_t rightBack = 0;
+extern const int8_t leftFront;
+extern const int8_t leftBack;
+extern const int8_t rightFront;
+extern const int8_t rightBack;
 
+/*
 extern Motor leftFront;
 extern Motor leftBack;
 extern Motor rightFront;
 extern Motor rightBack;
+*/
 
+extern std::shared_ptr<okapi::ChassisController> chassis;
