@@ -1,5 +1,6 @@
 #include "main.h"
 #include "subsystems/chassis.hpp"
+#include "subsystems/lift.hpp"
 
 using namespace okapi::literals;
 
@@ -80,6 +81,8 @@ void opcontrol() {
 
 	okapi::Controller controller;
 	okapi::Rate rate;
+
+	lift.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	
 	while(true){
 		double leftJoystick = controller.getAnalog(okapi::ControllerAnalog::leftY);
@@ -88,5 +91,15 @@ void opcontrol() {
 		chassis->getModel()->tank(leftJoystick, rightJoystick);
 		okapi::Rate rate;
 		rate.delay(100_Hz);
+
+		if(controller.getDigital(okapi::ControllerDigital::R1)){
+			lift.controllerSet(1);
+		}
+		else if(controller.getDigital(okapi::ControllerDigital::R2)){
+			lift.controllerSet(-1);
+		}
+		else{
+			lift.controllerSet(0);
+		}
 	}
 }
