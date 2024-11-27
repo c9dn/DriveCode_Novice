@@ -77,20 +77,33 @@ void autonomous() {}
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
+
+//Main control loop function
 void opcontrol() {
 
+
+
+	//Setup all the one time codes
 	okapi::Controller controller;
 	okapi::Rate rate;
 
 	lift.setBrakeMode(okapi::AbstractMotor::brakeMode::hold);
 	
+
+	//Main control loop
 	while(true){
+
+		//Get the joystick values
 		double leftJoystick = controller.getAnalog(okapi::ControllerAnalog::leftY);
 		double rightJoystick = controller.getAnalog(okapi::ControllerAnalog::rightY);
-
+		
+		//Drive the robot
 		chassis->getModel()->tank(leftJoystick, rightJoystick);
 		okapi::Rate rate;
 		rate.delay(100_Hz);
+
+		//Lift control
 
 		if(controller.getDigital(okapi::ControllerDigital::R1)){
 			lift.controllerSet(1);
