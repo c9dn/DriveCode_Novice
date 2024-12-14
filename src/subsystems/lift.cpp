@@ -2,8 +2,8 @@
 
 
 //Assign values to the lift ports
-const int8_t liftPort1=1;
-const int8_t liftPort2=2;
+const int8_t liftPort1=12;
+const int8_t liftPort2=5;
 
 
 //Create the lift MotorGroup

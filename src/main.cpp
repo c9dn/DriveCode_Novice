@@ -105,10 +105,10 @@ void opcontrol() {
 
 		//Lift control
 
-		if(controller.getDigital(okapi::ControllerDigital::R1)){
+		if(controller.getDigital(okapi::ControllerDigital::R2)){
 			lift.controllerSet(1);
 		}
-		else if(controller.getDigital(okapi::ControllerDigital::R2)){
+		else if(controller.getDigital(okapi::ControllerDigital::R1)){
 			lift.controllerSet(-1);
 		}
 		else{
